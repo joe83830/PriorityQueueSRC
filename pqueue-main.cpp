@@ -50,7 +50,7 @@ int main() {
         cout << endl;
         cout << "A) Array, L) Linked, H) Heap, E)xtra, Q)uit" << endl;
         string choice = toUpperCase(trim(getLine(
-                "Choose a queue: ")));
+                                             "Choose a queue: ")));
         if (choice.empty() || choice == "Q") {
             break;
         } else if (choice == "A") {
@@ -105,14 +105,25 @@ void test(T& queue) {
         if (choice.empty() || choice == "Q") {
             break;
         } else if (choice == "C") {
-            string value = getLine("Value? ");
-            int newPriority = getInteger("New priority? ");
-            queue.changePriority(value, newPriority);
+
+            try {
+                string value = getLine("Value? ");
+                int newPriority = getInteger("New priority? ");
+                queue.changePriority(value, newPriority);
+            } catch (string s) {
+
+                cout << s << endl;
+            }
         } else if (choice == "L") {
             queue.clear();
         } else if (choice == "D") {
-            string value = queue.dequeue();
-            cout << "Value returned: \"" << value << "\"" << endl;
+
+            try {
+                string value = queue.dequeue();
+                cout << "Value returned: \"" << value << "\"" << endl;
+            } catch (int e) {
+                cout << "Caught exn num " << e << endl;
+            }
         } else if (choice == "E") {
             string value = getLine("Value? ");
             int priority = getInteger("Priority? ");

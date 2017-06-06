@@ -27,12 +27,10 @@ public:
     int size() const;
     friend ostream& operator <<(ostream& out, const ArrayPriorityQueue& queue);
 
-
 private:
     // TODO: add any other member functions/variables necessary
     PQEntry *Apq;
     int count;
-
 };
 
 #endif

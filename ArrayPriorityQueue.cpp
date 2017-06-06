@@ -16,12 +16,25 @@ ArrayPriorityQueue::ArrayPriorityQueue() {  //What's the use of this?
 
 ArrayPriorityQueue::~ArrayPriorityQueue() {  // How do I use this?
 
-    // TODO: implement
+    delete [] Apq;
 
 }
 
 void ArrayPriorityQueue::changePriority(string value, int newPriority) {
-    // TODO: implement
+
+    for (int i = 0; i < count; i++) {
+
+        if (Apq[i].value == value && Apq[i].priority > newPriority) {
+
+            Apq[i].priority = newPriority;
+            break;
+        }
+
+        if (i == count - 1) {
+
+            throw (string("Nope"));
+        }
+    }
 
 }
 
@@ -31,6 +44,11 @@ void ArrayPriorityQueue::clear() {
 }
 
 string ArrayPriorityQueue::dequeue() {         // Throw exn?
+
+    if (count == 0) {
+
+        throw 20;
+    }
 
     PQEntry temp = Apq[0];
     int firsthalf;
@@ -73,7 +91,7 @@ string ArrayPriorityQueue::dequeue() {         // Throw exn?
     return temp.value;
 }
 
-void ArrayPriorityQueue::enqueue(string value, int priority) {
+void ArrayPriorityQueue::enqueue(string value, int priority) {  //長度乘以二比較有效率
 
     PQEntry pqe;
     pqe.value = value;
