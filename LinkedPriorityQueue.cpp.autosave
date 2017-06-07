@@ -28,8 +28,8 @@ void LinkedPriorityQueue::clear() {
 }
 
 string LinkedPriorityQueue::dequeue() {
-    // TODO: implement
-    return "";   // remove this
+    
+    return "";   
 }
 
 void LinkedPriorityQueue::enqueue(string value, int priority) {
