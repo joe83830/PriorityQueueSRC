@@ -7,7 +7,7 @@
 #include "LinkedPriorityQueue.h"
 
 LinkedPriorityQueue::LinkedPriorityQueue() {
-    // TODO: implement
+    listHead = NULL;
 
 }
 
@@ -32,23 +32,48 @@ string LinkedPriorityQueue::dequeue() {
 }
 
 void LinkedPriorityQueue::enqueue(string value, int priority) {
-    // TODO: implement
 
+    ListNode *newOne = new ListNode;
+    newOne->value = value;
+    newOne->priority = priority;
+
+    ListNode *cur, *prev = NULL; // first node has no previous
+    for (cur = listHead; cur != NULL; cur = cur->next) {
+        //cout << newOne->name << cur->name;
+        if (cur->priority == newOne->priority) {
+
+            if (cur->value > newOne->value) {
+                break;
+            }
+        }
+        prev = cur;
+    }
+
+    newOne->next = cur;
+    if (prev != NULL)
+        prev->next = newOne;
+    else
+        listHead = newOne;
 }
 
 bool LinkedPriorityQueue::isEmpty() const {
-    // TODO: implement
-    return false;   // remove this
+    if (listHead == NULL) {
+
+        return true;
+    } else {
+
+        return false;
+    }
 }
 
 string LinkedPriorityQueue::peek() const {
-    // TODO: implement
-    return "";   // remove this
+
+    return listHead->value;
 }
 
 int LinkedPriorityQueue::peekPriority() const {
-    // TODO: implement
-    return 0;   // remove this
+
+    return listHead->priority;
 }
 
 int LinkedPriorityQueue::size() const {
