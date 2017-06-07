@@ -31,8 +31,6 @@ public:
     int size() const;
     friend ostream& operator <<(ostream& out, const LinkedPriorityQueue& queue);
 
-    void enqueueHelper(ListNode * &listHead);
-
 private:
     // TODO: add any other member functions/variables necessary
     ListNode *listHead;
