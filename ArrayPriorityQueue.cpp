@@ -91,7 +91,7 @@ string ArrayPriorityQueue::dequeue() {         // Throw exn?
     return temp.value;
 }
 
-void ArrayPriorityQueue::enqueue(string value, int priority) {  //長度乘以二比較有效率
+void ArrayPriorityQueue::enqueue(string value, int priority) {
 
     PQEntry pqe;
     pqe.value = value;

@@ -29,12 +29,16 @@ public:
     int size() const;
     friend ostream& operator <<(ostream& out, const HeapPriorityQueue& queue);
     void bubbleUp (PQEntry *Hpq, int countAssist);
+    void bubbledown (PQEntry *Hpq, int bubbledownhelper);
+    void reorder (PQEntry *Hpq, int reorderAssist);
 
 private:
 
     PQEntry *Hpq;   // pointer to the array in which we represent the binary heap
     int count;
     int countAssist;
+    int bubbledownhelper;
+    int reorderAssist;
 };
 
 #endif
