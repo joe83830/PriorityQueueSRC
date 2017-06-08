@@ -13,23 +13,65 @@ LinkedPriorityQueue::LinkedPriorityQueue() {
 }
 
 LinkedPriorityQueue::~LinkedPriorityQueue() {
-    // TODO: implement
+
+    ListNode *prev = NULL;
+
+    for (ListNode *cur = listHead; cur != NULL; cur = cur->next) {
+
+        if (prev != NULL) {
+
+            delete prev;
+        }
+        prev = cur;
+    }
 
 }
 
 void LinkedPriorityQueue::changePriority(string value, int newPriority) {
-    // TODO: implement
+
+    ListNode *toBeSwapped = new ListNode;
+    toBeSwapped->value = value;
+    toBeSwapped->priority = newPriority;
+    ListNode *prev = new ListNode;
+    prev = NULL;
+
+    for (ListNode *cur = listHead; cur != NULL; cur = cur ->next) {
+
+        if (cur->value == value) {
+
+            toBeSwapped->next = cur->next;
+            prev->next = toBeSwapped;
+        }
+        prev = cur;
+    }
 
 }
 
 void LinkedPriorityQueue::clear() {
-    // TODO: implement
+
+    ListNode *prev = new ListNode;
+    prev = NULL;
+
+    for (ListNode *cur = listHead; cur != NULL; cur = cur->next) {
+
+        if (prev != NULL) {
+
+            listHead = NULL;
+            delete prev;
+        }
+        prev = cur;
+    }
 
 }
 
 string LinkedPriorityQueue::dequeue() {
 
-    return "";
+    ListNode *temp = listHead;
+    string valueOfListHead = listHead->value;
+    listHead = listHead->next;
+    delete temp;
+
+    return valueOfListHead;
 }
 
 void LinkedPriorityQueue::enqueue(string value, int priority) {
@@ -91,6 +133,25 @@ int LinkedPriorityQueue::size() const {
 }
 
 ostream& operator<<(ostream& out, const LinkedPriorityQueue& queue) {
-    // TODO: implement
+
+    ListNode *prev = NULL;
+    ListNode *adv;
+
+    for (ListNode *cur = queue.listHead; cur != NULL; cur = cur->next) {
+
+        adv = cur->next;
+
+        if ((prev == NULL) && (adv == NULL)){
+            out << "{" << cur->value << "," << cur->priority << "}";
+        } else if (adv == NULL) {
+            out << cur->value << "," << cur->priority << "}";
+        } else if (prev == NULL) {
+            out << "{" << cur->value << "," << cur->priority << ",";
+        } else {
+            out << cur->value << "," << cur->priority << ",";
+        }
+
+        prev = cur;
+    }
     return out;
 }
