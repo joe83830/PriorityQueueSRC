@@ -29,8 +29,8 @@ void HeapPriorityQueue::clear() {
 
 string HeapPriorityQueue::dequeue() {
 
-    PQEntry *temp = new PQEntry[count]; // first one is empty, need one extra space
-    temp = Hpq;
+    PQEntry *temp = Hpq; // first one is empty, need one extra space
+    Hpq = new PQEntry[count]; 
     Hpq[1] = temp[count];
 
     for (int i = 2; i < count; i++) {
@@ -38,8 +38,12 @@ string HeapPriorityQueue::dequeue() {
         Hpq[i] = temp[i];
     }
 
-
     return "";
+}
+
+void HeapPriorityQueue::bubbledown(PQEntry *Hpq, int countAssist) {
+    
+    
 }
 
 void HeapPriorityQueue::enqueue(string value, int priority) {
